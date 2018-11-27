@@ -34,8 +34,10 @@ Deploy with additional environment variables:
 ```shell
 knctl deploy -s knative-env -i index.docker.io/drnic/knative-env \
     --env MYVAR1=test1 \
-    --env MYVAR=test2
+    --env MYVAR2=test2
 ```
+
+![myvars](docs/images/knative-env-myvars.png)
 
 To view in browser, either setup Ingress and DNS, or use `kwt` as below. All routes from Knative will now work from local machine:
 
@@ -43,3 +45,4 @@ To view in browser, either setup Ingress and DNS, or use `kwt` as below. All rou
 sudo -E kwt net start --dns-map-exec='knctl dns-map'
 ```
 
+By default, your application will be viewable at http://knative-env.default.example.com
