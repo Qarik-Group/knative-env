@@ -4,6 +4,26 @@ A simple Sinatra application. Once deployed to Knative, it will echo the Environ
 
 ![demo](docs/images/knative-env.png)
 
+## Install Knative
+
+To install the `knctl` CLI on MacOS:
+
+```shell
+brew install starkandwayne/kubernetes/knctl
+```
+
+To install Knative, and its Istio dependency, into your current Kubernetes:
+
+```shell
+knctl install --exclude-monitoring
+```
+
+Later, you can uninstall Knative/Istio:
+
+```shell
+knctl uninstall
+```
+
 ## Deploy
 
 The repo contains a manifest file which creates a new application called `cfenv`, with a random string in the URL to avoid collisions.
