@@ -24,7 +24,7 @@ Later, you can uninstall Knative/Istio:
 knctl uninstall
 ```
 
-## Deploy
+## Deploy from Docker image
 
 The repo contains a manifest file which creates a new application called `cfenv`, with a random string in the URL to avoid collisions.
 
@@ -33,6 +33,18 @@ To deploy from existing Docker image:
 ```shell
 knctl deploy -s knative-env -i index.docker.io/drnic/knative-env
 ```
+
+Deploy with additional environment variables:
+
+```shell
+knctl deploy -s knative-env -i index.docker.io/drnic/knative-env \
+    --env MYVAR1=test1 \
+    --env MYVAR2=test2
+```
+
+![myvars](docs/images/knative-env-myvars.png)
+
+## Deploy from source with Ruby buildpack
 
 To deploy from source, whilst creating new intermediate Docker image (in Docker Hub in example below):
 
@@ -48,16 +60,6 @@ knctl deploy -s knative-env -i ${DOCKER_IMAGE} \
     --template buildpack \
     --directory .
 ```
-
-Deploy with additional environment variables:
-
-```shell
-knctl deploy -s knative-env -i index.docker.io/drnic/knative-env \
-    --env MYVAR1=test1 \
-    --env MYVAR2=test2
-```
-
-![myvars](docs/images/knative-env-myvars.png)
 
 To view in browser, either setup Ingress and DNS, or use `kwt` as below. All routes from Knative will now work from local machine:
 
