@@ -1,0 +1,45 @@
+# Display Knative environment variables
+
+A simple Sinatra application. Once deployed to Knative, it will echo the Environment and HTTP Request Headers.
+
+![demo](docs/images/knative-env.png)
+
+## Deploy
+
+The repo contains a manifest file which creates a new application called `cfenv`, with a random string in the URL to avoid collisions.
+
+To deploy from existing Docker image:
+
+```shell
+knctl deploy -s knative-env -i index.docker.io/drnic/knative-env
+```
+
+To deploy from source, whilst creating new intermediate Docker image (in Docker Hub in example below):
+
+```shell
+knctl basic-auth-secret create -s registry --docker-hub -u <you> -p <password>
+knctl service-account create --service-account build -s registry
+
+kubectl apply -f https://raw.githubusercontent.com/knative/build-templates/master/buildpack/buildpack.yaml
+
+DOCKER_IMAGE=index.docker.io/<you>/knative-env
+knctl deploy -s knative-env -i ${DOCKER_IMAGE} \
+    --service-account build \
+    --template buildpack \
+    --directory .
+```
+
+Deploy with additional environment variables:
+
+```shell
+knctl deploy -s knative-env -i index.docker.io/drnic/knative-env \
+    --env MYVAR1=test1 \
+    --env MYVAR=test2
+```
+
+To view in browser, either setup Ingress and DNS, or use `kwt` as below. All routes from Knative will now work from local machine:
+
+```shell
+sudo -E kwt net start --dns-map-exec='knctl dns-map'
+```
+
