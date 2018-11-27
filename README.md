@@ -6,7 +6,7 @@ A simple Sinatra application. Once deployed to Knative, it will echo the Environ
 
 ## Install Knative
 
-To install the `knctl` CLI on MacOS:
+To install the [`knctl`](https://github.com/cppforlife/knctl) CLI on MacOS:
 
 ```shell
 brew install starkandwayne/kubernetes/knctl
@@ -61,7 +61,7 @@ knctl deploy -s knative-env -i ${DOCKER_IMAGE} \
     --directory .
 ```
 
-To view in browser, either setup Ingress and DNS, or use `kwt` as below. All routes from Knative will now work from local machine:
+To view in browser, either setup Ingress and DNS, or use [`kwt`](https://github.com/cppforlife/kwt) as below. All routes from Knative will now work from local machine:
 
 ```shell
 sudo -E kwt net start --dns-map-exec='knctl dns-map'
