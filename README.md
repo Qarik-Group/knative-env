@@ -46,3 +46,11 @@ sudo -E kwt net start --dns-map-exec='knctl dns-map'
 ```
 
 By default, your application will be viewable at http://knative-env.default.example.com
+
+## Delete
+
+To delete the application and all its Knative artifacts (Kubernetes CRDs):
+
+```shell
+knctl service delete -s knative-env
+```
