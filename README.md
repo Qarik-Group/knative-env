@@ -76,3 +76,9 @@ To delete the application and all its Knative artifacts (Kubernetes CRDs):
 ```shell
 knctl service delete -s knative-env
 ```
+
+## More tutorials
+
+Follow our Knative series of articles to learn more about Knative and Kubernetes.
+
+https://starkandwayne.com/blog/introduction-to-knative/
