@@ -61,6 +61,8 @@ knctl deploy -s knative-env -i ${DOCKER_IMAGE} \
     --directory .
 ```
 
+## Local Network Access
+
 To view in browser, either setup Ingress and DNS, or use [`kwt`](https://github.com/cppforlife/kwt) as below. All routes from Knative will now work from local machine:
 
 ```shell
